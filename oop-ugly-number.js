@@ -30,9 +30,43 @@ class UglyNumber {
     this.nowNumber = 1;
     this.arrUgly = [];
   }
+  maxDivides(number, divisible) {
+    while(number % divisible == 0) {
+      number = number / divisible;
+    }
+    return number;
+  }
+  isUgly(numberUgly) {
+    numberUgly = this.maxDivides(numberUgly, 2);
+    numberUgly = this.maxDivides(numberUgly, 3);
+    numberUgly = this.maxDivides(numberUgly, 5);
 
+    return (numberUgly === 1) ? true : false;
+  }
+  getUglyNo(input) {
+    let i = 1;
+    let countUglyNumber = 1; // ugly number count
+
+    while(input > countUglyNumber) {
+      i++;
+      if(this.isUgly(i) == 1) {
+        countUglyNumber++;
+      }
+    }
+    return i;
+  }
+  getUglyArray(input) {
+    let i = 1;
+    while (input >= this.deret) {
+      if (this.isUgly(i) == 1) {
+        this.deret++
+        this.arrUgly.push(i);
+      }
+      i++
+    }
+    return this.arrUgly;
+  }
 }
-
 var ugly = new UglyNumber();
 var uglyarray = new UglyNumber();
 

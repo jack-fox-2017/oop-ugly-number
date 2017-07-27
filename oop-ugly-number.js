@@ -29,18 +29,68 @@ class UglyNumber {
     this.deret = 1;
     this.nowNumber = 1;
     this.arrUgly = [];
+
+    this.countUglyNumber = 1;
+  }
+
+  maxDivides(number, divisible){
+    while(number%divisible == 0)
+    {
+      number = number / divisible;
+    }
+    return number;
+  }
+
+  isUgly(numberUgly){
+    numberUgly = this.maxDivides(numberUgly, 2);
+    numberUgly = this.maxDivides(numberUgly, 3);
+    numberUgly = this.maxDivides(numberUgly, 5);
+
+    return (numberUgly == 1) ? true : false;
+  }
+
+  getUglyNo(input){
+    while(input>this.countUglyNumber)
+    {
+      this.deret++;
+      if(this.isUgly(this.deret) == 1)
+      {
+        this.countUglyNumber++;
+      }
+    }
+    return this.deret;
+  }
+
+  getUglyArray(input){
+    while(input>this.countUglyNumber)
+    {
+      this.deret++;
+      if(this.isUgly(this.deret) == 1)
+      {
+        this.countUglyNumber++;
+        this.arrUgly.push(this.deret);
+      }
+    }
+    return this.arrUgly;
   }
 
 }
 
+
+
 var ugly = new UglyNumber();
 var uglyarray = new UglyNumber();
+var uglies = new UglyNumber()
 
-console.log(ugly.getUglyNo(25));
+console.log(uglies.getUglyNo(150));
+console.log(ugly.getUglyNo(7));
+console.log(ugly.getUglyNo(10));
+console.log(ugly.getUglyNo(15));
 
-console.log(ugly.isUgly(14));
-console.log(ugly.isUgly(45));
-console.log(ugly.isUgly(57));
 
+// console.log(ugly.isUgly(14));
+// console.log(ugly.isUgly(45));
+// console.log(ugly.isUgly(57));
+//
 console.log(uglyarray.getUglyArray(12));
 //driver code

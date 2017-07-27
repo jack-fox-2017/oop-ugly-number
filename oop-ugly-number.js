@@ -20,17 +20,54 @@ Jika memasukkan parameter 150 maka output hasilnya adalah ugly number 5832
 Dst…..
 
 **/
-
 'use strict'
 
 class UglyNumber {
 
-  constructor() {
-    this.deret = 1;
-    this.nowNumber = 1;
+  constructor(deret,nowNumber,arrUgly) {
+    this.deret = 1; // i
+    this.nowNumber = 1;  //getUgly
     this.arrUgly = [];
   }
 
+  maxDivides(number, divisible){
+    while(number % divisible == 0) {
+      number = number / divisible;
+    }
+    return number;
+  }
+
+  isUgly(numberUgly){
+    numberUgly = this.maxDivides(numberUgly, 2);
+    numberUgly = this.maxDivides(numberUgly, 3);
+    numberUgly = this.maxDivides(numberUgly, 5);
+
+    return (numberUgly == 1 ? true : false);
+  }
+
+  getUglyNo(input){
+    this.deret;
+    this.nowNumber; // ugly number count
+
+    while(this.nowNumber < input) {
+      this.deret++;
+      if(this.isUgly(this.deret) == 1) {
+        this.nowNumber++;
+      } //used to "
+    }
+    return this.deret
+  }
+
+  getUglyArray(input){
+    let i =1;
+    while(i < input){
+    // this.getUglyNo(i);
+    this.arrUgly.push(this.getUglyNo(i))
+    i++;
+    }
+    return this.arrUgly
+  //   // return break;
+  }
 }
 
 var ugly = new UglyNumber();

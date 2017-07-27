@@ -24,15 +24,52 @@ Dst…..
 'use strict'
 
 class UglyNumber {
-
-  constructor() {
-    this.deret = 1;
-    this.nowNumber = 1;
+  constructor(number, divisible, numberUgly, input) {
+    this.deret = 1; //count
+    this.nowNumber = 1; //i
     this.arrUgly = [];
+  }
+
+  maxDivide(number, divisible){
+    while(number % divisible == 0) {
+      number = number / divisible;
+    }
+    return number;
+  }
+
+  isUgly(numberUgly){
+    numberUgly = this.maxDivide(numberUgly, 2);
+    numberUgly = this.maxDivide(numberUgly, 3);
+    numberUgly = this.maxDivide(numberUgly, 5);
+
+    return (numberUgly == 1) ? true : false; //membandingkan
+  }
+
+  getUglyNo(input){
+    let i = this.nowNumber;
+    let countUglyNumber = this.deret; // ugly number count
+
+    while(input > countUglyNumber) {
+      i++;
+      if(this.isUgly(i) == 1) {
+        countUglyNumber++; //
+      }
+    }
+    return i; //
+  }
+
+  getUglyArray(num){
+    //var array = this.isUgly(num)
+    for (var i = 1; i < num; i++) {
+      this.arrUgly.push(this.getUglyNo(i))
+      //console.log(i);
+    }
+    return this.arrUgly
   }
 
 }
 
+//driver code
 var ugly = new UglyNumber();
 var uglyarray = new UglyNumber();
 
@@ -43,4 +80,3 @@ console.log(ugly.isUgly(45));
 console.log(ugly.isUgly(57));
 
 console.log(uglyarray.getUglyArray(12));
-//driver code

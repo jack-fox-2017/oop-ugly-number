@@ -28,9 +28,44 @@ class UglyNumber {
   constructor() {
     this.deret = 1;
     this.nowNumber = 1;
-    this.arrUgly = [];
+    this.arrUgly = [1];
   }
 
+  maxDivide(number, divisible) {
+    while (number % divisible == 0) {
+      number = number / divisible;
+    }
+    return number;
+  }
+
+  isUgly(numberUgly) {
+  numberUgly = this.maxDivide(numberUgly, 2);
+  numberUgly = this.maxDivide(numberUgly, 3);
+  numberUgly = this.maxDivide(numberUgly, 5);
+
+  return (numberUgly == 1) ? true : false;
+  }
+
+  getUglyNo(input) {
+   while (input > this.nowNumber) {
+    this.deret++
+    if (this.isUgly(this.deret) == 1) {
+     this.nowNumber++;
+    }
+   }
+   return this.deret;
+  }
+
+ getUglyArray(input) {
+   while (input > this.nowNumber) {
+   this.deret++
+   if (this.isUgly(this.deret) == 1) {
+    this.arrUgly.push(this.deret)
+    this.nowNumber++;
+   }
+  }
+  return this.arrUgly;
+ }
 }
 
 var ugly = new UglyNumber();

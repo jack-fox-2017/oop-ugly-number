@@ -26,9 +26,45 @@ Dst…..
 class UglyNumber {
 
   constructor() {
-    this.deret = 1;
+    this.deret = 0;
     this.nowNumber = 1;
     this.arrUgly = [];
+  }
+
+  maxDivides(number, divisible) {
+    while(number % divisible == 0) {
+      number = number / divisible;
+    }
+    return number;
+  }
+
+  isUgly(numberUgly) {
+    numberUgly = this.maxDivides(numberUgly, 2);
+    numberUgly = this.maxDivides(numberUgly, 3);
+    numberUgly = this.maxDivides(numberUgly, 5);
+    return (numberUgly == 1) ? true : false;
+  }
+
+  getUglyNo(input){
+    while(input >= this.nowNumber) {
+      this.deret++;
+      if(this.isUgly(this.deret) == 1) {
+        this.nowNumber++;
+        //this.arrUgly.push(this.deret);
+      }
+    }
+    return this.deret;
+  }
+
+  getUglyArray(input){
+    while(input >= this.nowNumber) {
+      this.deret++;
+      if(this.isUgly(this.deret) == 1) {
+        this.nowNumber++;
+        this.arrUgly.push(this.deret);
+      }
+    }
+    return this.arrUgly;
   }
 
 }

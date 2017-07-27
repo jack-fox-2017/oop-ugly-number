@@ -31,16 +31,56 @@ class UglyNumber {
     this.arrUgly = [];
   }
 
+  getUglyNo(input) {
+    //debugger
+    while(input > this.deret) {
+      this.nowNumber++;
+      if(this.isUgly(this.nowNumber) == 1) {
+        this.deret++;
+      }
+    }
+    return this.nowNumber
+  }
+
+  isUgly(numberUgly) {
+    numberUgly = this.maxDivides(numberUgly, 2);
+    numberUgly = this.maxDivides(numberUgly, 3);
+    numberUgly = this.maxDivides(numberUgly, 5);
+    return (numberUgly == 1) ? true : false;
+  }
+
+  maxDivides(number, divisible) {
+    while(number % divisible == 0) {
+      number = number / divisible;
+    }
+    return number;
+  }
+
+  getUglyArray(number) {
+    while(number > this.deret) {
+      this.nowNumber++;
+      if(this.isUgly(this.nowNumber) == 1) {
+        this.deret++;
+        this.arrUgly.push(this.nowNumber);
+      }
+    }
+    //console.log(this.arrUgly);
+    return this.arrUgly
+  }
+
 }
 
 var ugly = new UglyNumber();
 var uglyarray = new UglyNumber();
 
+console.log('---------- method is get ugly');
 console.log(ugly.getUglyNo(25));
-
+console.log(ugly.getUglyNo(150));
+console.log(ugly.getUglyNo(10));
+console.log('---------- method is ugly');
 console.log(ugly.isUgly(14));
 console.log(ugly.isUgly(45));
 console.log(ugly.isUgly(57));
-
+console.log('---------- method is get ugly array');
 console.log(uglyarray.getUglyArray(12));
 //driver code

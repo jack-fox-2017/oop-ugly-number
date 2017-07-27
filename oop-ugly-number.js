@@ -26,21 +26,72 @@ Dst…..
 class UglyNumber {
 
   constructor() {
-    this.deret = 1;
-    this.nowNumber = 1;
+    this.deret = 1; //count // SALAH
+    this.nowNumber = 0; // i // SALAH 0 or 1 bingug
     this.arrUgly = [];
   }
+
+  maxDivides(number, divisible){
+    while(number % divisible == 0) {
+      number = number / divisible;
+      // console.log(number);
+
+    }
+    return number;
+  }
+
+  isUgly(numberUgly){
+    // let outcome =0;
+    // console.log(numberUgly);
+    numberUgly = this.maxDivides(numberUgly, 2);
+    // if (outcome ==1) {return true;}
+    numberUgly = this.maxDivides(numberUgly, 3);
+    // if (outcome ==1) {return true;}
+    numberUgly = this.maxDivides(numberUgly, 5);
+    // if (outcome ==1) {return true;}
+    // console.log((outcome == 1) ? 'lol' : 'nooo');
+    return (numberUgly == 1) ? true : false; // knpa gk bisa pake outcome satu2?
+  }
+
+  getUglyNo(input){
+    while(input >= this.deret) {
+      this.nowNumber++;
+
+      if(this.isUgly(this.nowNumber) == 1) {
+        this.deret++;
+        // this.arrUgly.push(this.nowNumber);
+      }
+    }
+    return this.nowNumber;
+  }
+
+  getUglyArray(input){
+    while(input >= this.deret) {
+      this.nowNumber++;
+
+      if(this.isUgly(this.nowNumber) == 1) {
+        this.deret++;
+        this.arrUgly.push(this.nowNumber);
+      }
+    }
+    return this.arrUgly;
+  }
+
 
 }
 
 var ugly = new UglyNumber();
+var ugly2 = new UglyNumber();
 var uglyarray = new UglyNumber();
 
-console.log(ugly.getUglyNo(25));
+//driver code
+
+console.log(ugly.getUglyNo(7));
+console.log(ugly.getUglyNo(150));
+console.log(ugly2.getUglyNo(25));
 
 console.log(ugly.isUgly(14));
 console.log(ugly.isUgly(45));
 console.log(ugly.isUgly(57));
 
 console.log(uglyarray.getUglyArray(12));
-//driver code

@@ -30,6 +30,48 @@ class UglyNumber {
     this.nowNumber = 1;
     this.arrUgly = [];
   }
+  maxDivide(number, divisible) {
+    while(number % divisible == 0) {
+      number = number / divisible;
+    }
+    return number;
+  }
+  isUgly(numberUgly) {
+    numberUgly = this.maxDivide(numberUgly, 2);
+    numberUgly = this.maxDivide(numberUgly, 3);
+    numberUgly = this.maxDivide(numberUgly, 5);
+
+    return (numberUgly === 1) ? true : false;
+  }
+  getUglyNo(input) {
+    let i = 1;
+    let countUglyNumber = 1; // ugly number count
+
+    while(input > countUglyNumber) {
+      i++;
+      if(this.isUgly(i) === true) {
+        countUglyNumber++;
+      }
+    }
+    return i;
+  }
+  getUglyArray(input) {
+    // let i = 1;
+    // let countUglyNumber = 1; // ugly number count
+
+    while(input >= this.nowNumber) {
+      // this.deret++;
+      // this.nowNumber++;
+      // console.log(this.nowNumber);
+      if(this.isUgly(this.deret) === true) {
+        this.nowNumber++;
+        // console.log(this.nowNumber);
+        this.arrUgly.push(this.deret)
+      }
+      this.deret++;
+    }
+    return this.arrUgly;
+  }
 
 }
 
@@ -37,6 +79,7 @@ var ugly = new UglyNumber();
 var uglyarray = new UglyNumber();
 
 console.log(ugly.getUglyNo(25));
+// console.log(ugly.getUglyNo(12));
 
 console.log(ugly.isUgly(14));
 console.log(ugly.isUgly(45));

@@ -30,6 +30,40 @@ class UglyNumber {
     this.nowNumber = 1;
     this.arrUgly = [];
   }
+  maxDivide(number,divisible){
+    while(number % divisible === 0) {
+      number = number / divisible;
+    }
+    return number;
+  }
+
+  isUgly(numberUgly){
+    numberUgly = this.maxDivide(numberUgly, 2);
+    numberUgly = this.maxDivide(numberUgly, 3);
+    numberUgly = this.maxDivide(numberUgly, 5);
+
+    return (numberUgly === 1) ? true : false;
+  }
+
+  getUglyNo(input){
+    while(input > this.deret) {
+      this.nowNumber++;
+      if(this.isUgly(this.nowNumber) === true) {
+        this.deret++;
+      }
+    }
+    return this.nowNumber;
+  }
+
+  getUglyArray(amount){
+    while(amount >= this.nowNumber) {
+      if(this.isUgly(this.deret) === true) {
+        this.nowNumber++;
+        this.arrUgly.push(this.deret);
+      }this.deret++;
+    }
+    return this.arrUgly;
+  }
 
 }
 

@@ -31,12 +31,45 @@ class UglyNumber {
     this.arrUgly = [];
   }
 
+  maxDivide(number, divisible) {
+  	while(number % divisible == 0) {
+	    number = number / divisible;
+	  }
+	  return number;
+  }
+
+  isUgly(numberUgly) {
+  	numberUgly = this.maxDivide(numberUgly, 2);
+	  numberUgly = this.maxDivide(numberUgly, 3);
+	  numberUgly = this.maxDivide(numberUgly, 5);
+
+	  return (numberUgly == 1) ? true : false;
+  }
+
+  getUglyNo(input) {
+	  while(this.deret <= input) {
+	    if(this.isUgly(this.nowNumber) == 1) {
+	    	this.arrUgly.push(this.nowNumber)
+	      this.deret++;
+	    }
+
+	    if(this.deret <= input)
+	    	this.nowNumber++;
+	  }
+	  return this.nowNumber;
+  }
+
+  getUglyArray(input) {
+  	this.getUglyNo(input)
+  	return this.arrUgly
+  }
+
 }
 
 var ugly = new UglyNumber();
 var uglyarray = new UglyNumber();
 
-console.log(ugly.getUglyNo(25));
+console.log(ugly.getUglyNo(12));
 
 console.log(ugly.isUgly(14));
 console.log(ugly.isUgly(45));

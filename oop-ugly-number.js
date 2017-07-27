@@ -54,7 +54,7 @@ class UglyNumber {
     while(input > countUglyNumber) {
       if(this.isUgly(i) == 1) {
         countUglyNumber++ ;
-        
+
       }
         i++;
     }
@@ -86,5 +86,5 @@ console.log(ugly.isUgly(14));
 console.log(ugly.isUgly(45));
 console.log(ugly.isUgly(57));
 
-console.log(uglyarray.getUglyArray(7));
+console.log(uglyarray.getUglyArray(12));
 //driver code

@@ -31,6 +31,49 @@ class UglyNumber {
     this.arrUgly = [];
   }
 
+  maxDivides(number, divisible) {
+    while(number % divisible == 0) {
+      number = number / divisible;
+    }
+    return number;
+  }
+
+  isUgly(numberUgly) {
+    numberUgly = this.maxDivides(numberUgly, 2);
+    numberUgly = this.maxDivides(numberUgly, 3);
+    numberUgly = this.maxDivides(numberUgly, 5);
+
+    return (numberUgly == 1) ? true : false;
+  }
+
+  getUglyNo(input) {
+    let i = 1;
+    let countUglyNumber = 1;
+
+    while(input > countUglyNumber) {
+      i++;
+      if(this.isUgly(i) == 1) {
+        countUglyNumber++;
+      }
+    }
+    return i;
+  }
+
+  getUglyArray(input) {
+    let i = 1;
+    let countUglyNumber = 1;
+
+    while(input >= countUglyNumber) {
+      if(this.isUgly(i) == 1) {
+        countUglyNumber++;
+        // i++;
+        this.arrUgly.push(i)
+      }
+      i++;
+    }
+    return this.arrUgly;
+  }
+
 }
 
 var ugly = new UglyNumber();
@@ -42,5 +85,5 @@ console.log(ugly.isUgly(14));
 console.log(ugly.isUgly(45));
 console.log(ugly.isUgly(57));
 
-console.log(uglyarray.getUglyArray(12));
+console.log(uglyarray.getUglyArray(7));
 //driver code

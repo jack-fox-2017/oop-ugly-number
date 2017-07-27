@@ -20,27 +20,64 @@ Jika memasukkan parameter 150 maka output hasilnya adalah ugly number 5832
 Dst…..
 
 **/
-
 'use strict'
-
 class UglyNumber {
 
-  constructor() {
+  constructor(input) {
     this.deret = 1;
     this.nowNumber = 1;
     this.arrUgly = [];
   }
 
+  maxDivide(number, divisible){
+    while(number%divisible == 0){
+      number = number / divisible;
+    }
+    return number
+  }
+  isUgly(numberUgly){
+    numberUgly = this.maxDivide(numberUgly, 2);
+    numberUgly = this.maxDivide(numberUgly, 3);
+    numberUgly = this.maxDivide(numberUgly, 5);
+    return (numberUgly == 1) ? true : false;
+  }
+
+  getUglyNo(input){
+    while (input > this.nowNumber) {
+      this.deret++
+      if(this.isUgly(this.deret)==1){
+        this.nowNumber++;
+      }
+    }return this.deret
+  }
+  getUglyArray(input){
+    while (input > this.nowNumber) {
+      this.deret++
+      if(this.isUgly(this.deret)==1){
+        this.nowNumber++;
+        this.arrUgly.push(this.deret)
+      }
+    }return this.arrUgly
+  }
+
 }
 
 var ugly = new UglyNumber();
+var ugly2 = new UglyNumber();
 var uglyarray = new UglyNumber();
 
-console.log(ugly.getUglyNo(25));
+console.log(ugly.getUglyNo(7));
+console.log(ugly.getUglyNo(12));
+console.log(ugly.getUglyNo(10));
+console.log(ugly.getUglyNo(150));
 
-console.log(ugly.isUgly(14));
-console.log(ugly.isUgly(45));
-console.log(ugly.isUgly(57));
 
-console.log(uglyarray.getUglyArray(12));
+console.log(uglyarray.getUglyArray(7));
+// console.log(ugly.isUgly(14));
+// console.log(ugly.isUgly(45));
+// console.log(ugly.isUgly(57));
+// console.log(ugly.isUgly(7));
+
+
+// console.log(uglyarray.getUglyArray(12));
 //driver code

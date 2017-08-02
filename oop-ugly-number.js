@@ -49,7 +49,7 @@ class UglyNumber {
     this.deret;
     this.nowNumber; // ugly number count
 
-    while(this.nowNumber < input) {
+    while(this.nowNumber <= input) {
       this.deret++;
       if(this.isUgly(this.deret) == 1) {
         this.nowNumber++;
@@ -59,7 +59,7 @@ class UglyNumber {
   }
 
   getUglyArray(input){
-    let i =1;
+    let i =0;
     while(i < input){
     // this.getUglyNo(i);
     this.arrUgly.push(this.getUglyNo(i))
@@ -73,11 +73,11 @@ class UglyNumber {
 var ugly = new UglyNumber();
 var uglyarray = new UglyNumber();
 
-console.log(ugly.getUglyNo(25));
+// console.log(ugly.getUglyNo(25));
 
-console.log(ugly.isUgly(14));
+console.log(ugly.getUglyNo(5));
 console.log(ugly.isUgly(45));
 console.log(ugly.isUgly(57));
 
-console.log(uglyarray.getUglyArray(12));
+console.log(uglyarray.getUglyArray(15));
 //driver code
